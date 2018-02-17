@@ -6,7 +6,7 @@ var meli = require('mercadolibre');
 /* GET home page. */
 router.get('/investigate', function(req, res, next) {
     console.log("asdasd")
-    res.render('partials/index', { title: 'Express'});
+    res.render('test', { title: 'Investigate'});
 });
 
 module.exports = router;

@@ -28,9 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/recomendacion', recomendacion);
-app.use('/posicionamiento', posicionamiento);
-app.use('/investigate', investigate);
+app.get('/recomendacion', recomendacion);
+app.get('/posicionamiento', posicionamiento);
+app.get('/investigate', investigate);
 
 
 // catch 404 and forward to error handler
