@@ -12,18 +12,87 @@ var demandaPersistencia=require('../persistencia/demandaPersistencia');
 var edicionPersistencia=require('../persistencia/edicionPersistencia');
 var PublicacionUsuarioPersistencia=require('../persistencia/publicacionUsuarioPersistencia');
 var publicacionEdicionPersistencia=require('../persistencia/publicacionEdicionPersistencia');
+var request = require('request');
+
 
 var sistemaSherlock= (function () {
 
 
     (function ()
     {
-        console.log('hola');
+        console.log('');
+        //instanciar cada objeto del model
+        var condiciones = []
+        var publicacionUsuarios = []
 
+        var libros = []
+        var publicacionEdiciones = []
+
+        //SELECT todos los libros y publicaciones
     })();
 
-    return{
+    function searchEdicion(ISBN){
+        //buscar si existe ese ISBN en el array de ediciones
+        //si no lo encuentra lo busca en la db con edicionpersistencia.search
+    }
 
+    return{
+        getData : function(){
+            var meliObject = new  meli.Meli(384959678157016,'iYowbeD27vdRsVMZbq5o3rTfJ1OdRm7s')
+            meliObject.get('sites/MLA/search?category=MLA5684&condition=new&limit=10', function (err, res) {
+                //IGNORAR SI TIENE LA PALABRA PACK TODO
+                var id = res['results'][9]['id'] //MLA695429669
+                meliObject.get('items/'+id, function (err, res) {
+                    var title = ""
+                    //llamar a la api de google
+                    var atts = res['attributes'];
+                    atts.forEach(function(att){
+                        if (att['id'] == 'ISBN'){
+                            var ISBN = att['value_name']
+                        }
+                        if (att['id'] == 'BOOK_TITLE'){
+                            title = att['value_name']
+                        }
+                    })
+                    title = title.replace(new RegExp(" ", 'g'),"-")
+                    console.log(title)
+                    if (title){
+                        request('https://www.googleapis.com/books/v1/volumes?q='+title, function (error, response, body) {
+                            data = JSON.parse(body)
+                            if(response.statusCode != 200){
+                                console.log("error: ", error)
+                            }else if (data['totalItems'] == 0){
+                                console.log("no items found")
+                            }else{
+                                for (var i = 0; i < 5; i++){
+                                    console.log(data['items'][i]['id'])
+                                    //verificar si esta en la base cada id en libros
+                                    if (1){ //existe en la db
+
+                                    }else{ //no existe en la db
+
+                                    }
+                                }
+
+                            }
+                        })
+                    }
+                  //
+
+                    // verificar si ya existe libro, sino lo creo
+                    // verifico si ya existe esa edicion, sino la creo
+                    //creo la publicacion
+
+
+
+                    //var pe = new publicacionEdicion()
+                    //pe.set_ID(id)
+                    //pe.set_precio(res['price'])
+                    //pe.set_ventas(res['sold_quantity'])
+                    //var atts = res['attributes']
+                })
+            })
+        }
 
     }
 
