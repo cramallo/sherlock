@@ -3,7 +3,7 @@ var db=require('../persistencia/dbconnection');
 class demandaEdicPersistencia{
 
     insert(ventasAFecha, fechaAnalisis, ISBN, callback){
-        return db.query("INSERT INTO demandaedic VALUES(?,?,?,?)", [this.selectLastId()+1, ventasAFecha, fechaAnalisis, ISBN], function(err){
+        return db.query("INSERT INTO `demandaedic`(`ventasAFecha`, `fechaAnalisis`, `ISBN`) VALUES (?,?,?)", [ventasAFecha, fechaAnalisis, ISBN], function(err){
             if(err){
                 console.log("[-]DEMANDAEDIC " + err.toString());
                 return callback(err);
