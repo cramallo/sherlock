@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var posicionamiento=require('./routes/posicionamiento');
 var recomendacion=require('./routes/recomendacion');
 
+
 var app = express();
 
 
