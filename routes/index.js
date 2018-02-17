@@ -10,6 +10,11 @@ var admPersistDemandaEdicion = require('../persistencia/demandaEdicPersistencia'
 var admPersistDemEdic = new admPersistDemandaEdicion();
 
 /* GET home page. */
+console.log("Getting all rows from libro");
+admPersistLib.getAll(function(){
+    console.log(row[0]);
+})
+
 console.log("Up and running :)!");
 var i = new Date().getMilliseconds();
 console.log("STEP 1: INSERT IN libro");

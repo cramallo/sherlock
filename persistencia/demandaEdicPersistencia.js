@@ -35,8 +35,17 @@ class demandaEdicPersistencia{
             return row.length;
         });
     }
-    buscarTodos(){
-
+    getAll(callback){
+        return db.query("SELECT * FROM demandaedic", function(err, row){
+           if(err){
+               console.log("[-]GETALL [DemandaEdic]" + err);
+               return callback(err);
+           }
+           else{
+               console.log("[+] All rows from demandaedic were selected!")
+               return callback(row[0]);
+           }
+        });
     }
 }
 module.exports=demandaEdicPersistencia;

@@ -14,8 +14,17 @@ class libroPersistencia{
             }
         })
     }
-    buscarTodos(){
-
+    getAll(callback){
+        return db.query("SELECT * FROM libro", function(err, row){
+            if(err){
+                console.log("[-]GETALL [Libro]" + err);
+                return callback(err);
+            }
+            else{
+                console.log("[+] All rows from libro were selected!")
+                return callback(row[0]);
+            }
+        });
     }
 }
 module.exports=libroPersistencia;
