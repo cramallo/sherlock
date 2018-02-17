@@ -7,4 +7,4 @@ class EdicionPersistencia{
 
     }
 }
-module.exports=ISBNPersistencia;
+module.exports=EdicionPersistencia;
