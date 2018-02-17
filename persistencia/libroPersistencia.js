@@ -14,8 +14,26 @@ class libroPersistencia{
             }
         })
     }
+
     buscarTodos(){
 
+    }
+
+    exist(id, callback){
+        return db.query('SELECT ID FROM `libro` WHERE ID LIKE \'%?%\'',[id],function (err, res) {
+            if(err){
+                console.log("[-]" + err.toString());
+                return callback(err);
+            }
+            else if(res.length){
+                console.log("[+]ID "+res[0]+' finded');
+                return callback(null, true);
+            }
+            else{
+                console.log("[+]ID "+id+' not finded');
+                return callback(null, false);
+            }
+        })
     }
 }
 module.exports=libroPersistencia;
