@@ -4,7 +4,7 @@ var sherlock=require('../controlador/sistemaSherlock');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Sherlock' });
+  res.render('test', { title: 'Sherlock' });
 });
 
 module.exports = router;
