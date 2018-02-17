@@ -28,21 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sistemaSherlock.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sistemaSherlock.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controlador/sistemaSherlock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+            <state relative-caret-position="516">
+              <caret line="102" column="41" lean-forward="true" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="libroPersistencia.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="libroPersistencia.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/persistencia/libroPersistencia.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+            <state relative-caret-position="391">
+              <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -112,8 +112,8 @@
         <option value="$PROJECT_DIR$/persistencia/edicionPersistencia.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/persistencia/demandaEdicPersistencia.js" />
-        <option value="$PROJECT_DIR$/controlador/sistemaSherlock.js" />
         <option value="$PROJECT_DIR$/persistencia/libroPersistencia.js" />
+        <option value="$PROJECT_DIR$/controlador/sistemaSherlock.js" />
       </list>
     </option>
   </component>
@@ -215,7 +215,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="W:/GitHub/CintiaKentros-eCommerce" />
     <property name="JavaScriptPreferStrict" value="false" />
   </component>
   <component name="RecentsManager">
@@ -267,12 +267,12 @@
       <workItem from="1518884032200" duration="1390000" />
       <workItem from="1518885774763" duration="4008000" />
       <workItem from="1518889932322" duration="8648000" />
-      <workItem from="1518904113912" duration="3164000" />
+      <workItem from="1518904113912" duration="3949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38525000" />
+    <option name="totallyTimeSpent" value="39310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
@@ -672,18 +672,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controlador/sistemaSherlock.js">
+    <entry file="file://$PROJECT_DIR$/persistencia/libroPersistencia.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+        <state relative-caret-position="391">
+          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/persistencia/libroPersistencia.js">
+    <entry file="file://$PROJECT_DIR$/controlador/sistemaSherlock.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        <state relative-caret-position="516">
+          <caret line="102" column="41" lean-forward="true" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
           <folding />
         </state>
       </provider>

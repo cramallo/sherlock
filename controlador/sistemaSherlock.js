@@ -40,6 +40,18 @@ var sistemaSherlock= (function () {
         //si no lo encuentra lo busca en la db con edicionpersistencia.search
     }
 
+    function exist(id, callback) {
+        for(let i=0;i<libros.length;i++){
+            if(libros[i].get_ID().indexOf(id)!=-1){
+                return callback(null, libros[i]);
+            }
+        }
+
+        libroPers.exist(id, function (err, flag) {
+            return callback(err, flag);
+        })
+    }
+
     return{
         getData : function(){
             var meliObject = new  meli.Meli(384959678157016,'iYowbeD27vdRsVMZbq5o3rTfJ1OdRm7s')
@@ -72,21 +84,22 @@ var sistemaSherlock= (function () {
                                     console.log(data['items'][i]['id'])
                                     //verificar si esta en la base cada id en libros
                                     let verified=0;
-                                    let exist=false;
+                                    let existAux=false;
                                     let finalID='';
-                                    libroPers.exist(data['items'][i]['id'],function (err, flag) {
+                                    exist(data['items'][i]['id'],function (err, flag) {
                                         verified++;
                                         if(err){
                                             //algo
                                         }
                                         else if(flag===true)
                                             //descartamos la carga del nuevo libro
-                                            exist=true;
+                                            existAux=true;
                                         else
-                                            finalID+=data['items'][verified-1]['id']+'_'
+                                            finalID+=data['items'][verified-1]['id']+'_';
                                         //verificamos si se terminaron de buscar todos los id y todos dieron falso.
-                                        if(verified===5 && exist===false){
+                                        if(verified===5 && existAux===false){
                                             //En caso de que no exista creamos el libro con el ID de finalID y el titulo de la busqeuda
+                                            // var libro=new libro(finalID, )
                                         }
                                     })
                                 }
