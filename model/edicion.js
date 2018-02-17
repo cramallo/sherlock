@@ -4,7 +4,7 @@ class edicion{
     constructor(ISBN) {
         this._ISBN=ISBN;
         this._demandas=[];
-        // ISBNPersistencia.insert(this);
+        // edicionPersistencia.insert(this);
     }
 
 
@@ -29,7 +29,7 @@ class edicion{
     }
     
     estasPersistente(value){
-        ISBNPersistencia.buscarISBN(value, function (boolean) {
+        edicionPersistencia.buscarISBN(value, function (boolean) {
 
         })
     }
