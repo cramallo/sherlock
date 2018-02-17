@@ -13,19 +13,22 @@ var edicionPersistencia=require('../persistencia/edicionPersistencia');
 var PublicacionUsuarioPersistencia=require('../persistencia/publicacionUsuarioPersistencia');
 var publicacionEdicionPersistencia=require('../persistencia/publicacionEdicionPersistencia');
 
-class sherlock{
+var sistemaSherlock= (function () {
 
-    constructor() {
-        var meliObject = new meli.Meli(384959678157016, iYowbeD27vdRsVMZbq5o3rTfJ1OdRm7s);
-        this._ediciones=[];
-        this._condiciones=[];
-        this._libros=[];
-        this._demandas=[];
-        this._publicacionesUsuario=[];
-        this._publicacionesEdicion=[];
+
+    (function ()
+    {
+        console.log('hola');
+
+    })();
+
+    return{
+
+
     }
 
+})();
 
-}
 
-module.exports=sherlock;
+
+module.exports = sistemaSherlock;

@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var sherlock=require('../controlador/sistemaSherlock');
+var meli = require('mercadolibre');
 
 /* GET home page. */
-router.get('/posicionamiento', function(req, res, next) {
-    res.render('test', { title: 'Posicion' });
+router.get('/investigate', function(req, res, next) {
+    console.log("asdasd")
+    res.render('test', { title: 'Investigate'});
 });
 
 module.exports = router;

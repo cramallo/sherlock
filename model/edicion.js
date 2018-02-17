@@ -36,4 +36,4 @@ class edicion{
 
 
 }
-module.exports=ISBN;
+module.exports=edicion;

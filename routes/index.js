@@ -27,7 +27,7 @@ admPersistLib.insert(i+1, "IT", "Re piola", 1234, 13.37, function(res){
 });
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: ISBN.get_ID() });
+  res.render('test', { title: 'Sherlock' });
 });
 
 module.exports = router;

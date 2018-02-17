@@ -18,4 +18,5 @@ class edicionPersistencia{
 
     }
 }
+
 module.exports=edicionPersistencia;
