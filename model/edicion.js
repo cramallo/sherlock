@@ -4,7 +4,6 @@ class edicion{
     constructor(ISBN) {
         this._ISBN=ISBN;
         this._demandas=[];
-        this._publicacionesLibro=[];
         // ISBNPersistencia.insert(this);
     }
 
@@ -33,18 +32,6 @@ class edicion{
         ISBNPersistencia.buscarISBN(value, function (boolean) {
 
         })
-    }
-
-    set_publicacionesLibro(value){
-        this._publicacionesLibro=value;
-    }
-
-    add_publicacionesLibro(value){
-        this._publicacionesLibro.push(value);
-    }
-
-    get_publicacionesLibro(){
-        return this._publicacionesLibro;
     }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-02-2018 a las 01:59:38
+-- Tiempo de generación: 17-02-2018 a las 17:03:48
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -88,7 +88,6 @@ CREATE TABLE `demandapubuser` (
 
 CREATE TABLE `edicion` (
   `ISBN` varchar(15) NOT NULL,
-  `IDPublicacionEdicion` varchar(15) NOT NULL,
   `IDlibro` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -99,7 +98,7 @@ CREATE TABLE `edicion` (
 --
 
 CREATE TABLE `libro` (
-  `ID` varchar(15) NOT NULL,
+  `ID` varchar(255) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `descripcion` text NOT NULL,
   `thumbnail` varchar(200) NOT NULL,
@@ -116,7 +115,8 @@ CREATE TABLE `publicacionedicion` (
   `ID` varchar(15) NOT NULL,
   `precio` float NOT NULL,
   `fecha` varchar(20) NOT NULL,
-  `ventas` int(11) NOT NULL
+  `ventas` int(11) NOT NULL,
+  `ISBN` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -172,8 +172,7 @@ ALTER TABLE `demandapubuser`
 -- Indices de la tabla `edicion`
 --
 ALTER TABLE `edicion`
-  ADD PRIMARY KEY (`ISBN`,`IDPublicacionEdicion`),
-  ADD KEY `IDPublicacionEdicion` (`IDPublicacionEdicion`),
+  ADD PRIMARY KEY (`ISBN`),
   ADD KEY `IDlibro` (`IDlibro`);
 
 --
@@ -186,7 +185,8 @@ ALTER TABLE `libro`
 -- Indices de la tabla `publicacionedicion`
 --
 ALTER TABLE `publicacionedicion`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ISBN` (`ISBN`);
 
 --
 -- Indices de la tabla `publicacionusuario`
@@ -222,8 +222,13 @@ ALTER TABLE `demandapubuser`
 --
 ALTER TABLE `edicion`
   ADD CONSTRAINT `edicion_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `demandaedicion` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `edicion_ibfk_2` FOREIGN KEY (`IDPublicacionEdicion`) REFERENCES `publicacionedicion` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `edicion_ibfk_3` FOREIGN KEY (`IDlibro`) REFERENCES `libro` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `publicacionedicion`
+--
+ALTER TABLE `publicacionedicion`
+  ADD CONSTRAINT `publicacionedicion_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `edicion` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

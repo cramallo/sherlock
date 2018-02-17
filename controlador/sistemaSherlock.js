@@ -1,3 +1,4 @@
+var meli = require('mercadolibre');
 var edicion=require('../model/edicion');
 var condicion=require('../model/condicion');
 var libro=require('../model/libro');
@@ -15,6 +16,7 @@ var publicacionEdicionPersistencia=require('../persistencia/publicacionEdicionPe
 class sherlock{
 
     constructor() {
+        var meliObject = new meli.Meli(384959678157016, iYowbeD27vdRsVMZbq5o3rTfJ1OdRm7s);
         this._ediciones=[];
         this._condiciones=[];
         this._libros=[];
@@ -22,6 +24,8 @@ class sherlock{
         this._publicacionesUsuario=[];
         this._publicacionesEdicion=[];
     }
+
+
 }
 
 module.exports=sherlock;

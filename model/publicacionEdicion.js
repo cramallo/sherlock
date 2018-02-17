@@ -1,10 +1,11 @@
 class publicacionEdicion{
 
-    constructor(ID, precio, fecha, ventas) {
+    constructor(ID, precio, fecha, ventas, edicion) {
         this._ID=ID;
         this._precio=precio;
         this._fecha=fecha;
         this._ventas=ventas;
+        this._edicion=edicion;
     }
 
 
@@ -41,4 +42,11 @@ class publicacionEdicion{
     }
 
 
+    get_edicion() {
+        return this._edicion;
+    }
+
+    set_edicion(value) {
+        this._edicion = value;
+    }
 }
