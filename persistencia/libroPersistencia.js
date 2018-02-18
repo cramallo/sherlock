@@ -43,7 +43,6 @@ class libroPersistencia{
                 return callback(null, true);
             }
             else{
-                console.log("[+]ID "+id+' not finded');
                 return callback(null, false);
             }
         })
