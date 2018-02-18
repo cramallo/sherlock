@@ -1,5 +1,7 @@
 var db=require('../persistencia/dbconnection');
 var libro=require('../model/libro');
+var edicionPersistencia=require('../persistencia/edicionPersistencia');
+var edicPers=new edicionPersistencia();
 
 class libroPersistencia{
 
@@ -21,21 +23,42 @@ class libroPersistencia{
     }
 
     getAll(callback){
-        return db.query("SELECT * FROM libro", function(err, row){
+        //Hay un bug en getEditionsByBook, devuelve 2 iguales.
+        return db.query("SELECT * FROM libro", function(err, rows){
             if(err){
                 console.log("[-]GETALL [Libro]" + err);
                 return callback(err);
             }
+
             else{
-                if(row.length){
+                if(rows.length){
                     console.log("[+] All rows from libro were selected!")
                     var books=[];
-                    for(let i=0;i<row.length;i++){
-                        let book=new libro(row[i].ID, row[i].titulo, row[i].descripcion, row[i].thumbnail);
+                    let done=0;
+                    let finishCondition=rows.length;
+                    for(let i=0;i<rows.length;i++){
+                        let book=new libro(rows[i].ID, rows[i].titulo, rows[i].descripcion, rows[i].thumbnail);
+                        edicPers.getEditionsByBook(book, function (err, res, book) {
+                            if(err)
+                                return callback(console.log('[-] '+err));
+                            else{
+                                done++;
+                                if(res.length){
+                                    for(let j=0;j<res.length;j++){
+                                        book.add_ISBNs(res[j]);
+                                    }
+                                    books.push(book)
+                                    if(done===finishCondition){
+                                        return callback(null, books);
+                                    }
+                                }
+                                if(done===finishCondition){
+                                    return callback(null, books);
+                                }
+                            }
 
-                        books.push(book);
+                        })
                     }
-                    return callback(books);
                 }
                 else{
                     console.log("[+] Not exist rows from libro!")

@@ -4,6 +4,7 @@ class edicion{
     constructor(ISBN) {
         this._ISBN=ISBN;
         this._demandas=[];
+        this._publicacionesEdic=[];
         // edicionPersistencia.insert(this);
     }
 
@@ -34,6 +35,17 @@ class edicion{
         })
     }
 
+    set_publicacionesEdic(value){
+        this._publicacionesEdic=value;
+    }
+
+    add_publicacionesEdic(value){
+        this._publicacionesEdic.push(value);
+    }
+
+    get_publicacionesEdic(){
+        return this._publicacionesEdic;
+    }
 
 }
 module.exports=edicion;

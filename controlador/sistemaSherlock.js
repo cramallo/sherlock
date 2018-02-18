@@ -30,6 +30,18 @@ var sistemaSherlock= (function () {
 
     (function ()
     {
+        libroPers.getAll(function (err, books) {
+            if(err)
+                return;
+            else{
+                if(books.length){
+                    return libros=books;
+                }
+                else{
+                    return;
+                }
+            }
+        })
         //SELECT todos los libros y publicaciones
     })();
 
@@ -40,8 +52,8 @@ var sistemaSherlock= (function () {
 
     function bookExist(id, callback) {
         for(let i=0;i<libros.length;i++){
-            if(libros[i].get_ID().indexOf(id)!=-1){
-                return callback(null, libros[i]);
+            if(libros[i].sosLibro(id)){
+                return callback(null, true);
             }
         }
 
@@ -114,6 +126,10 @@ var sistemaSherlock= (function () {
                     }
                 })
             })
+        },
+
+        getBooks(){
+          return libros;
         }
 
     }

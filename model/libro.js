@@ -7,7 +7,6 @@ class libro{
         this._thumbnail=thumbnail;
         // this._total=total;
         this._ediciones=[];
-        this._demandas=[];
     }
 
 
@@ -55,20 +54,8 @@ class libro{
         this._ediciones.push(value);
     }
 
-    set_demandas(value){
-        this._demandas=value
-    }
-
-    add_demanda(value){
-        this._demandas.push(demanda);
-    }
-
-    get_demandas(){
-        return this._demandas;
-    }
-
     sosLibro(value){
-        return this._ID=value;
+        return this._ID.indexOf(value)!=-1;
     }
 }
 

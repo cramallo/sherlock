@@ -366,15 +366,23 @@
                                         <div class="feed-widget">
                                             <div class="feed-widget__wrap scrollable scrollbar-macosx">
                                                 <div class="feed-widget__cont">
-                                                    <div class="feed-widget__list">
+                                                    <div class="feed-widget__list" style="display: inline-flex;flex-direction: column; width:100%;">
                                                         {{#if books}}
                                                             {{#each books}}
-                                                                <div class="feed-widget__item feed-widget__item_product">
-                                                                    <div class="feed-widget__ico">
-                                                                        <img src="{{this._thumbnail}}" style="max-height: 75px"></div>
-                                                                    <div class="feed-widget__info">
-                                                                        <div class="feed-widget__text">{{this._titulo}}</div>
-                                                                        <div class="feed-widget__date">{{this._descripcion}}</div>
+                                                                <div class="feed-widget__item feed-widget__item_product" style="display: inline-flex; width: 100%">
+                                                                    <div class="first_half__item">
+                                                                        <div class="feed-widget__ico">
+                                                                            <img src="{{this._thumbnail}}" style="max-height: 75px"></div>
+                                                                        <div class="feed-widget__info">
+                                                                            <div class="feed-widget__text">{{this._titulo}}</div>
+                                                                            <div class="feed-widget__date">{{this._descripcion}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="second_half__item">
+                                                                        <div class="feed-widget__info">
+                                                                            <div class="feed-widget__text">{{this._titulo}}</div>
+                                                                            <div class="feed-widget__date">{{this._descripcion}}</div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             {{/each}}
