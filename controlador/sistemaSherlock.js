@@ -17,21 +17,19 @@ var request = require('request');
 
 var sistemaSherlock= (function () {
 
+    var condiciones = []
+    var publicacionUsuarios = []
+    var libros = []
+    var publicacionEdiciones = []
+    var condicionPers=new condicionPersistencia();
+    var demandaPers=new demandaPersistencia();
+    var edicionPers=new edicionPersistencia();
+    var pubUsuarioPers=new PublicacionUsuarioPersistencia();
+    var pubEdicionPers=new publicacionEdicionPersistencia();
+    var libroPers=new libroPersistencia();
 
     (function ()
     {
-        console.log('');
-        //instanciar cada objeto del model
-        var condiciones = []
-        var publicacionUsuarios = []
-        var libros = []
-        var publicacionEdiciones = []
-        var condicionPers=new condicionPersistencia();
-        var demandaPers=new demandaPersistencia();
-        var edicionPers=new edicionPersistencia();
-        var pubUsuarioPers=new PublicacionUsuarioPersistencia();
-        var pubEdicionPers=new publicacionEdicionPersistencia();
-        var libroPers=new libroPersistencia();
         //SELECT todos los libros y publicaciones
     })();
 
@@ -70,16 +68,18 @@ var sistemaSherlock= (function () {
                             title = att['value_name']
                         }
                     })
-                    title = title.replace(new RegExp(" ", 'g'),"-")
-                    console.log(title)
-                    if (title){
+                    var titleToSearch = title.replace(new RegExp(" ", 'g'),"-")
+                    if (titleToSearch){
                         request('https://www.googleapis.com/books/v1/volumes?q='+title, function (error, response, body) {
-                            data = JSON.parse(body)
+                            var data = JSON.parse(body)
                             if(response.statusCode != 200){
                                 console.log("error: ", error)
                             }else if (data['totalItems'] == 0){
                                 console.log("no items found")
                             }else{
+                                var description = data['description']
+                                var thumbnail = data['description']//['imageLinks']['thumbnail']
+                                console.log(thumbnail)
                                 for (var i = 0; i < 5; i++){
                                     console.log(data['items'][i]['id'])
                                     //verificar si esta en la base cada id en libros
@@ -99,7 +99,9 @@ var sistemaSherlock= (function () {
                                         //verificamos si se terminaron de buscar todos los id y todos dieron falso.
                                         if(verified===5 && existAux===false){
                                             //En caso de que no exista creamos el libro con el ID de finalID y el titulo de la busqeuda
-                                            // var libro=new libro(finalID, )
+                                            var libro=new libro(finalID, title, description,"")
+                                            libros.append(libro)
+                                            console.log(libros[0])
                                         }
                                     })
                                 }

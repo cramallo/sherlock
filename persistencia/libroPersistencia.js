@@ -33,7 +33,7 @@ class libroPersistencia{
     }
 
     exist(id, callback){
-        return db.query('SELECT ID FROM `libro` WHERE ID LIKE \'%?%\'',[id],function (err, res) {
+        return db.query("SELECT ID FROM libro WHERE ID LIKE '%"+id+"%'",function (err, res) {
             if(err){
                 console.log("[-]" + err.toString());
                 return callback(err);

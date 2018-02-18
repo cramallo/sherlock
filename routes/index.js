@@ -12,9 +12,10 @@ var admPersistDemEdic = new admPersistDemandaEdicion();
 /* GET home page. */
 console.log("Getting all rows from libro");
 admPersistLib.getAll(function(){
-    console.log(row[0]);
+    //console.log(row[0]);
 })
 
+/*
 console.log("Up and running :)!");
 var i = new Date().getMilliseconds();
 console.log("STEP 1: INSERT IN libro");
@@ -30,6 +31,7 @@ admPersistLib.insert(i+1, "IT", "Re piola", 1234, 13.37, function(res){
         });
     });
 });
+*/
 
 router.get('/', function(req, res, next) {
   res.render('test', { title: 'Sherlock' });
