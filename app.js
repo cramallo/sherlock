@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.get('/', index);
 app.get('/recomendacion', recomendacion);
 app.get('/posicionamiento', posicionamiento);
 app.get('/investigate', investigate);
