@@ -8,6 +8,7 @@ var admPersistLibro = require('../persistencia/libroPersistencia');
 var admPersistLib = new admPersistLibro();
 var admPersistDemandaEdicion = require('../persistencia/demandaEdicPersistencia');
 var admPersistDemEdic = new admPersistDemandaEdicion();
+var sherlock=require('../controlador/sistemaSherlock');
 
 /* GET home page. */
 // console.log("Getting all rows from libro");
@@ -15,7 +16,7 @@ var admPersistDemEdic = new admPersistDemandaEdicion();
 //     console.log(res);
 // })
 
-
+sherlock.getData();
 // console.log("Up and running :)!");
 // var i = new Date().getMilliseconds();
 // var price=Math.floor((Math.random() * 1000) + 100);

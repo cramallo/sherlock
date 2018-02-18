@@ -62,7 +62,9 @@ var sistemaSherlock= (function () {
         })
     }
 
+    function createBook(data, finalID, title, description,thumbnail, callback){
 
+    }
 
     function callback_gBooks(error, response, body) {
         var data = JSON.parse(body)
@@ -71,6 +73,7 @@ var sistemaSherlock= (function () {
         }else if (data['totalItems'] == 0){
             console.log("no items found")
         }else{
+            //TODO: Este else deberia ser una funcion aparte llamada createBook(parametros);
             var description = data['items'][0]['volumeInfo']['description']
             var thumbnail = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
             let verified=0;
@@ -92,8 +95,10 @@ var sistemaSherlock= (function () {
                     if(verified===5 && existAux===false){
                         //En caso de que no exista creamos el libro con el ID de finalID y el titulo de la busqeuda
                         let unLibro = new libro(finalID, title, description,thumbnail);
-                        libros.push(unLibro)
-                        console.log("mi libro: ",libros[0])
+                        //TODO: no podemos seguir porque falta ISBN y titulo extraido de la publicacion
+                        libros.push(unLibro);
+                        //TODO: hay que analizar donde hacemos el push en la DB;
+                        console.log("[+] Nuevo libro: ",libros[0])
                     }
                 })
             }
