@@ -1,4 +1,5 @@
 var db=require('../persistencia/dbconnection');
+var libro=require('../model/libro');
 
 class libroPersistencia{
 
@@ -26,8 +27,20 @@ class libroPersistencia{
                 return callback(err);
             }
             else{
-                console.log("[+] All rows from libro were selected!")
-                return callback(row[0]);
+                if(row.length){
+                    console.log("[+] All rows from libro were selected!")
+                    var books=[];
+                    for(let i=0;i<row.length;i++){
+                        let book=new libro(row[i].ID, row[i].titulo, row[i].descripcion, row[i].thumbnail);
+
+                        books.push(book);
+                    }
+                    return callback(books);
+                }
+                else{
+                    console.log("[+] Not exist rows from libro!")
+                    return callback();
+                }
             }
         });
     }

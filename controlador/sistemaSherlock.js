@@ -38,7 +38,7 @@ var sistemaSherlock= (function () {
         //si no lo encuentra lo busca en la db con edicionpersistencia.search
     }
 
-    function exist(id, callback) {
+    function bookExist(id, callback) {
         for(let i=0;i<libros.length;i++){
             if(libros[i].get_ID().indexOf(id)!=-1){
                 return callback(null, libros[i]);
@@ -48,6 +48,46 @@ var sistemaSherlock= (function () {
         libroPers.exist(id, function (err, flag) {
             return callback(err, flag);
         })
+    }
+
+
+
+    function callback_gBooks(error, response, body) {
+        var data = JSON.parse(body)
+        if(response.statusCode != 200){
+            console.log("error: ", error)
+        }else if (data['totalItems'] == 0){
+            console.log("no items found")
+        }else{
+            var description = data['items'][0]['volumeInfo']['description']
+            var thumbnail = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
+            let verified=0;
+            let finalID='';
+            for (var i = 0; i < 5; i++){
+                //verificar si esta en la base cada id en libros
+                let existAux=false;
+                bookExist(data['items'][i]['id'],function (err, flag) {
+                    verified++;
+                    if(err){
+                        //algo
+                    }
+                    else if(flag===true)
+                    //descartamos la carga del nuevo libro
+                        existAux=true;
+                    else
+                        finalID+=data['items'][verified-1]['id']+'_';
+                    //verificamos si se terminaron de buscar todos los id y todos dieron falso.
+                    if(verified===5 && existAux===false){
+                        //En caso de que no exista creamos el libro con el ID de finalID y el titulo de la busqeuda
+                        let unLibro = new libro(finalID, title, description,thumbnail);
+                        libros.push(unLibro)
+                        console.log("mi libro: ",libros[0])
+                    }
+                })
+            }
+
+        }
+        return 1
     }
 
     return{
@@ -80,44 +120,6 @@ var sistemaSherlock= (function () {
 
 })();
 
-
-function callback_gBooks(error, response, body) {
-    var data = JSON.parse(body)
-    if(response.statusCode != 200){
-        console.log("error: ", error)
-    }else if (data['totalItems'] == 0){
-        console.log("no items found")
-    }else{
-        var description = data['items'][0]['volumeInfo']['description']
-        var thumbnail = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
-        let verified=0;
-        let finalID='';
-        for (var i = 0; i < 5; i++){
-            //verificar si esta en la base cada id en libros
-            let existAux=false;
-            exist(data['items'][i]['id'],function (err, flag) {
-                verified++;
-                if(err){
-                    //algo
-                }
-                else if(flag===true)
-                //descartamos la carga del nuevo libro
-                    existAux=true;
-                else
-                    finalID+=data['items'][verified-1]['id']+'_';
-                //verificamos si se terminaron de buscar todos los id y todos dieron falso.
-                if(verified===5 && existAux===false){
-                    //En caso de que no exista creamos el libro con el ID de finalID y el titulo de la busqeuda
-                    let unLibro = new libro(finalID, title, description,thumbnail);
-                    libros.push(unLibro)
-                    console.log("mi libro: ",libros[0])
-                }
-            })
-        }
-
-    }
-    return 1
-}
 
 
 module.exports = sistemaSherlock;
