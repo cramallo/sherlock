@@ -67,7 +67,7 @@ var sistemaSherlockInvAndRec= (function () {
 
     }
 
-    function callback_gBooks(error, response, body) {
+    function callback_gBooks(error, response, body, title) {
         var data = JSON.parse(body)
         if(response.statusCode != 200){
             console.log("error: ", error)
@@ -78,7 +78,7 @@ var sistemaSherlockInvAndRec= (function () {
             var description = data['items'][0]['volumeInfo']['description']
             var thumbnail = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
             let verified=0;
-            let finalID='';
+            let finalID='_';
             for (var i = 0; i < 5; i++){
                 //verificar si esta en la base cada id en libros
                 let existAux=false;
@@ -127,7 +127,9 @@ var sistemaSherlockInvAndRec= (function () {
                 })
                 var titleToSearch = title.replace(new RegExp(" ", 'g'),"-")
                 if (titleToSearch){
-                    request('https://www.googleapis.com/books/v1/volumes?q='+title,callback_gBooks)
+                    request('https://www.googleapis.com/books/v1/volumes?q='+title,function(error, response, body){
+                        callback_gBooks(error, response, body, title)
+                    })
                 }
             })
         })
@@ -136,11 +138,7 @@ var sistemaSherlockInvAndRec= (function () {
         getBooks(){
           return libros;
         }
-
     }
-
-}
-
 })();
 
 module.exports = sistemaSherlockInvAndRec;
