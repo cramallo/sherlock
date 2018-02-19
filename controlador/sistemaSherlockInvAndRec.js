@@ -15,7 +15,7 @@ var publicacionEdicionPersistencia=require('../persistencia/publicacionEdicionPe
 var request = require('request');
 
 
-var sistemaSherlock= (function () {
+var sistemaSherlockInvAndRec= (function () {
 
     var condiciones = []
     var publicacionUsuarios = []
@@ -31,6 +31,7 @@ var sistemaSherlock= (function () {
     (function ()
     {
         libroPers.getAll(function (err, books) {
+            //TODO:──────────────────────LIMITAR, NO TIENE QUE DEVOLVER TODO QUE LLENAMOS MEMORIA;──────────────────────────────
             if(err)
                 return;
             else{
@@ -143,4 +144,4 @@ var sistemaSherlock= (function () {
 
 
 
-module.exports = sistemaSherlock;
+module.exports = sistemaSherlockInvAndRec;

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var sherlock=require('../controlador/sistemaSherlock');
+var sherlockPos=require('../controlador/sistemaSherlockPos');
 
 /* GET home page. */
 router.get('/posicionamiento', function(req, res, next) {

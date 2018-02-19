@@ -1,3 +1,5 @@
+// ─────── = alt+196
+//TODO:──────────────────────SOLO PARA TEST, BORRAR;──────────────────────────────
 var express = require('express');
 var router = express.Router();
 var admPersistPublicacionEdicion = require('../persistencia/publicacionEdicionPersistencia');
@@ -8,15 +10,19 @@ var admPersistLibro = require('../persistencia/libroPersistencia');
 var admPersistLib = new admPersistLibro();
 var admPersistDemandaEdicion = require('../persistencia/demandaEdicPersistencia');
 var admPersistDemEdic = new admPersistDemandaEdicion();
-var sherlock=require('../controlador/sistemaSherlock');
+var sherlock=require('../controlador/sistemaSherlockInvAndRec');
 
+
+
+//TODO:──────────────────────SOLO PARA TEST, BORRAR;──────────────────────────────
 /* GET home page. */
 // console.log("Getting all rows from libro");
 // admPersistLib.getAll(function(res){
 //     console.log(res);
 // })
 
-sherlock.getData();
+// sherlock.getData();
+
 // console.log("Up and running :)!");
 // var i = new Date().getMilliseconds();
 // var price=Math.floor((Math.random() * 1000) + 100);
@@ -35,6 +41,8 @@ sherlock.getData();
 //         });
 //     });
 // });
+//TODO:──────────────────────SOLO PARA TEST, BORRAR;──────────────────────────────
+
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Sherlock' });
