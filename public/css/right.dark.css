@@ -3275,3 +3275,11 @@ table.dataTable thead > tr > td.sorting {
 .input-number-less:hover {
   border-color: #fff transparent transparent transparent;
 }
+
+.first_half__item{
+  width: 80%;
+}
+
+.second_half__item{
+  width: 20%;
+}

@@ -1,4 +1,5 @@
 var db=require('../persistencia/dbconnection');
+var demanda=require('../model/demanda');
 
 class demandaEdicPersistencia{
 
@@ -46,6 +47,27 @@ class demandaEdicPersistencia{
                return callback(row[0]);
            }
         });
+    }
+
+    getDemandasEdicByEdic(edicion, callback){
+        return db.query('SELECT * FROM `demandaedic` WHERE `ISBN`=?',[edicion.get_ISBN()],function (err, rows) {
+            if(err)
+                return callback(err);
+            else{
+                var demandas=[];
+                if(rows.length){
+                    console.log("[+] All rows from demandaedic were selected!")
+                    for(let i=0;i<rows.length;i++){
+                        let demandaEdic=new demanda(rows[i].ventasAFecha);
+                        demandas.push(demandaEdic);
+                    }
+                    return callback(null, demandas, edicion);
+                }
+                else{
+                    return callback(null, demandas, edicion);
+                }
+            }
+        })
     }
 }
 module.exports=demandaEdicPersistencia;

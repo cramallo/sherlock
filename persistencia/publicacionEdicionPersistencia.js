@@ -1,4 +1,5 @@
 var db=require('../persistencia/dbconnection');
+var pubEdic=require('../model/publicacionEdicion');
 
 class publicacionEdicionPersistencia{
 
@@ -25,6 +26,27 @@ class publicacionEdicionPersistencia{
                 return callback(row[0]);
             }
         });
+    }
+
+    getPubsEdicByEdic(edicion, callback){
+        return db.query('SELECT * FROM `publicacionedicion` WHERE `ISBN`=?',[edicion.get_ISBN()],function (err, rows) {
+            if(err)
+                return callback(err);
+            else{
+                var pubsEdic=[];
+                if(rows.length){
+                    console.log("[+] All rows from publicacionedicion were selected!")
+                    for(let i=0;i<rows.length;i++){
+                        let pubedic=new pubEdic(rows[i].ID,rows[i].precio,rows[i].fecha,rows[i].ventas);
+                        pubsEdic.push(pubedic);
+                    }
+                    return callback(null, pubsEdic, edicion);
+                }
+                else{
+                    return callback(null, pubsEdic, edicion);
+                }
+            }
+        })
     }
 }
 module.exports=publicacionEdicionPersistencia;

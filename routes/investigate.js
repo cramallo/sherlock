@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var sherlock=require('../controlador/sistemaSherlock');
+var sherlock=require('../controlador/sistemaSherlockInvAndRec');
 
 
 /* GET home page. */
