@@ -52,31 +52,31 @@ var sistemaSherlock= (function () {
 
     return{
         getData : function(){
-            var meliObject = new  meli.Meli(384959678157016,'iYowbeD27vdRsVMZbq5o3rTfJ1OdRm7s')
-            meliObject.get('sites/MLA/search?category=MLA5684&condition=new&limit=10', function (err, res) {
-                //IGNORAR SI TIENE LA PALABRA PACK TODO
-                var id = res['results'][9]['id'] //MLA695429669
-                meliObject.get('items/'+id, function (err, res) {
-                    var title = ""
-                    //llamar a la api de google
-                    var atts = res['attributes'];
-                    atts.forEach(function(att){
-                        if (att['id'] == 'ISBN'){
-                            var ISBN = att['value_name']
-                        }
-                        if (att['id'] == 'BOOK_TITLE'){
-                            title = att['value_name']
-                        }
-                    })
-                    var titleToSearch = title.replace(new RegExp(" ", 'g'),"-")
-                    if (titleToSearch){
-                        request('https://www.googleapis.com/books/v1/volumes?q='+title,callback_gBooks)
+        var meliObject = new  meli.Meli(384959678157016,'iYowbeD27vdRsVMZbq5o3rTfJ1OdRm7s')
+        meliObject.get('sites/MLA/search?category=MLA5684&condition=new&limit=10', function (err, res) {
+            //IGNORAR SI TIENE LA PALABRA PACK TODO
+            var id = res['results'][9]['id'] //MLA695429669
+            meliObject.get('items/'+id, function (err, res) {
+                var title = ""
+                //llamar a la api de google
+                var atts = res['attributes'];
+                atts.forEach(function(att){
+                    if (att['id'] == 'ISBN'){
+                        var ISBN = att['value_name']
+                    }
+                    if (att['id'] == 'BOOK_TITLE'){
+                        title = att['value_name']
                     }
                 })
+                var titleToSearch = title.replace(new RegExp(" ", 'g'),"-")
+                if (titleToSearch){
+                    request('https://www.googleapis.com/books/v1/volumes?q='+title,callback_gBooks)
+                }
             })
-        }
-
+        })
     }
+
+}
 
 })();
 
@@ -116,7 +116,6 @@ function callback_gBooks(error, response, body) {
         }
 
     }
-    return 1
 }
 
 
