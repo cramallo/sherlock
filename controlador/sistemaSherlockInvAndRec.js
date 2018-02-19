@@ -67,7 +67,7 @@ var sistemaSherlockInvAndRec= (function () {
 
     }
 
-    function callback_gBooks(error, response, body, title) {
+    function createBook(error, response, body, title) {
         var data = JSON.parse(body)
         if(response.statusCode != 200){
             console.log("error: ", error)
@@ -97,6 +97,7 @@ var sistemaSherlockInvAndRec= (function () {
                         //En caso de que no exista creamos el libro con el ID de finalID y el titulo de la busqeuda
                         let unLibro = new libro(finalID, title, description,thumbnail);
                         //TODO: no podemos seguir porque falta ISBN y titulo extraido de la publicacion
+                        //TODO: CREATE EDITION
                         libros.push(unLibro);
                         //TODO: hay que analizar donde hacemos el push en la DB;
                         console.log("[+] Nuevo libro: ",libros[0])
@@ -128,7 +129,7 @@ var sistemaSherlockInvAndRec= (function () {
                 var titleToSearch = title.replace(new RegExp(" ", 'g'),"-")
                 if (titleToSearch){
                     request('https://www.googleapis.com/books/v1/volumes?q='+title,function(error, response, body){
-                        callback_gBooks(error, response, body, title)
+                        createBook(error, response, body, title)
                     })
                 }
             })

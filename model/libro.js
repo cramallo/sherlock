@@ -5,7 +5,6 @@ class libro{
         this._titulo=titulo;
         this._descripcion=descripcion;
         this._thumbnail=thumbnail;
-        // this._total=total;
         this._ediciones=[];
     }
 
