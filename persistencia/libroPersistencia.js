@@ -5,21 +5,15 @@ var edicPers=new edicionPersistencia();
 
 class libroPersistencia{
 
-    insert(IdLibro, titulo, descripcion, thumbnail, total, callback){
-        return db.query("INSERT INTO libro VALUES(?,?,?,?,?)", [IdLibro, titulo, descripcion, thumbnail, total], function(err){
+    insert(IdLibro, titulo, descripcion, thumbnail, callback){
+        return db.query("INSERT INTO libro VALUES(?,?,?,?,0)", [IdLibro, titulo, descripcion, thumbnail], function(err){
             if(err){
-                console.log("[-]" + err.toString());
-                return callback(err);
+                console.log("[-] libro" + err.toString());
             }
             else{
                 console.log("[+]Row successfuly inserted in table libro");
-                return callback();
             }
         })
-    }
-
-    buscarTodos(){
-
     }
 
     getAll(callback){
@@ -62,24 +56,25 @@ class libroPersistencia{
                 }
                 else{
                     console.log("[+] Not exist rows from libro!")
-                    return callback();
+                    return callback([]);
                 }
             }
         });
     }
 
     exist(id, callback){
-        return db.query("SELECT ID FROM libro WHERE ID LIKE '%_"+id+"_%'",function (err, res) {
+        return db.query("SELECT * FROM libro WHERE ID LIKE '%_"+id+"_%'",function (err, res) {
             if(err){
                 console.log("[-]" + err.toString());
                 return callback(err);
             }
             else if(res.length){
-                console.log("[+]ID "+res[0]+' finded');
-                return callback(null, true);
+                console.log("[+]ID "+res[0]['ID']+' finded');
+                var unLibro=new libro(res[0]['ID'],res[0]['titulo'],res[0]['descripcion'], res[0]['thumbnail'],res[0]['total'])
+                return callback(null, true,unLibro);
             }
             else{
-                return callback(null, false);
+                return callback(null, false,null);
             }
         })
     }

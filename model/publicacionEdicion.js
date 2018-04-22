@@ -1,9 +1,9 @@
 class publicacionEdicion{
 
-    constructor(ID, precio, fecha, ventas) {
+    constructor(ID, precio, ventas) {
         this._ID=ID;
         this._precio=precio;
-        this._fecha=fecha;
+        this._fecha=new Date();
         this._ventas=ventas;
         // this._edicion=edicion;
     }

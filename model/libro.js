@@ -56,6 +56,15 @@ class libro{
     sosLibro(value){
         return this._ID.indexOf(value)!=-1;
     }
+
+    tenesISBN(value){
+        for(let i=0;i<this._ediciones.length;i++){
+            if(this._ediciones[i].sosISBN(value)){
+                return this._ediciones[i]
+            }
+        }
+        return false
+    }
 }
 
 module.exports=libro;
